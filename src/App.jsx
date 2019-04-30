@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import HigherOrderComponent from './HigherOrderComponent'
-import WithThemeProvider from './WithThemeProvider'
+import WithThemeProvider from './WithThemeProvider.jsx'
+import { withStyles } from '@material-ui/core';
 
 // const Index = () => {
 //   return <HigherOrderComponent />;
 // };
 
-class App extends Component {
+const styles = theme => ({})
+
+export default class App extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         console.log('hello, world!');
-        return (<HigherOrderComponent />)
+        return (
+        <WithThemeProvider>
+            <HigherOrderComponent />
+        </WithThemeProvider>
+        )
     }
 }
-
-export default WithThemeProvider(App)
