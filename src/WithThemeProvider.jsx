@@ -1,31 +1,25 @@
 import React, { Component } from 'react';
-import { ThemeProvider, withTheme } from '@material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
 
 const jss = create(jssPreset());
 
-class WithThemeProvider extends Component {
-    constructor (props) {
-        super(props)
-        console.log('WithThemeProvider props', props)
-    }
-    render() {
-    const ComponentWithTheme = withTheme({spacing: '8px'})(this.props.children)
+export const WithThemeProvider = (Component) => (props) => {
+    // const ComponentWithTheme = withTheme({spacing: '8px'})(this.props.children)
     return (
         <JssProvider jss={jss} generateClassName={createGenerateClassName()}>
-            <ThemeProvider
-                theme={{
-                    spacing: '8px',
-                    color: 'red'
-                }}
+            <MuiThemeProvider
+                theme={createMuiTheme({
+                    palette: {primary: blue}
+                })}
             >
-                <div>{this.props.children}</div>
-            </ThemeProvider>
+                <Component {...props} />
+            </MuiThemeProvider>
         </JssProvider>   
         )
     }
-}
 
 export default WithThemeProvider

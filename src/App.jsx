@@ -9,16 +9,15 @@ import { withStyles } from '@material-ui/core';
 
 const styles = theme => ({})
 
-export default class App extends Component {
+export class App extends Component {
     constructor(props) {
         super(props)
     }
     render() {
-        console.log('hello, world!');
         return (
-        <WithThemeProvider>
             <HigherOrderComponent />
-        </WithThemeProvider>
         )
     }
 }
+
+export default WithThemeProvider(App)
