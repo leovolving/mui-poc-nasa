@@ -8,7 +8,6 @@ import blue from '@material-ui/core/colors/blue';
 const jss = create(jssPreset());
 
 export const WithThemeProvider = (Component) => (props) => {
-    // const ComponentWithTheme = withTheme({spacing: '8px'})(this.props.children)
     return (
         <JssProvider jss={jss} generateClassName={createGenerateClassName()}>
             <MuiThemeProvider
