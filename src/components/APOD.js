@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Search from './Search';
 import Result from './Result';
+import Header from './Header';
 
 const styles = theme => {
 return ({
@@ -33,9 +34,16 @@ export class APOD extends Component {
   }
 
   render () {
-    return this.state.hasResult
-      ? <Result stateChangeCallback={this.onStateChangeSubmit} />
-      : <Search stateChangeCallback={this.onStateChangeSubmit} />;
+    return (
+      <section>
+        <Header />
+        <main role='main'>
+          {this.state.hasResult
+          ? <Result stateChangeCallback={this.onStateChangeSubmit} />
+          : <Search stateChangeCallback={this.onStateChangeSubmit} />}
+        </main>
+      </section>  
+      );
   }
 }
 
