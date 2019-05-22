@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Search from './Search';
+import Result from './Result';
 
 const styles = theme => {
-    console.log('theme f', theme)
 return ({
     root: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -18,13 +18,29 @@ return ({
     })
 };
 
-function HigherOrderComponent(props) {
-  const { classes } = props;
-  return <Button className={classes.root}>Higher-order component</Button>;
+export class APOD extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasResult: false
+    }
+
+    this.onStateChangeSubmit = this.onStateChangeSubmit.bind(this)
+  }
+
+  onStateChangeSubmit (event) {
+    this.setState({hasResult: !this.state.hasResult})
+  }
+
+  render () {
+    return this.state.hasResult
+      ? <Result stateChangeCallback={this.onStateChangeSubmit} />
+      : <Search stateChangeCallback={this.onStateChangeSubmit} />;
+  }
 }
 
-HigherOrderComponent.propTypes = {
+APOD.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HigherOrderComponent);
+export default withStyles(styles)(APOD);
