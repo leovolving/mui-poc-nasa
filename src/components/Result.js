@@ -1,5 +1,19 @@
 import React from 'react';
+import { Typography, CardMedia } from '@material-ui/core';
 
 export default function Result (props) {
-    return <button onClick={props.stateChangeCallback}>Result</button>
+    const {apodData: {copyright, date, explanation, url, title}} = props
+
+    return (
+        <section role='region'>
+            <Typography>
+                {title}
+            </Typography>
+                <CardMedia height='140' src={url} image={url} alt={title} component='img' />
+            <Typography>
+                {explanation}
+            </Typography>
+            <button onClick={props.stateChangeCallback}>Result</button>
+        </section>
+    )
 }

@@ -23,7 +23,8 @@ export class APOD extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hasResult: false
+      hasResult: false,
+      apodData: null
     }
 
     this.onStateChangeSubmit = this.onStateChangeSubmit.bind(this)
@@ -40,17 +41,17 @@ export class APOD extends Component {
         service_version: "v1",
         title: "Comet Hale-Bopp Develops a Tail",
         url: "https://apod.nasa.gov/apod/image/9702/halebopp1_cvo.gif"
-    }
+      }
     })
   }
 
   onStateChangeSubmit (event) {
-    if (this.state.hasResult) this.getPhoto()
+    if (!this.state.hasResult) this.getPhoto()
+    else this.setState({apodData: null})
     this.setState({hasResult: !this.state.hasResult})
   }
 
   render () {
-    console.log(this.state)
     return (
       <section>
         <Header />
