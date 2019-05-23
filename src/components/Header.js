@@ -1,9 +1,18 @@
 import React from 'react';
+import { Typography, withStyles } from '@material-ui/core';
 
-export default function Header (props) {
+const styles = theme => ({
+    root: {
+        fontSize: '3rem'
+    }
+})
+
+export function Header (props) {
     return (
         <header role='banner'>
-            <h1>APOD Finder</h1>
+            <Typography className={props.classes.root} variant='h1'>APOD Finder</Typography>
         </header>
     )
 }
+
+export default withStyles(styles)(Header)
