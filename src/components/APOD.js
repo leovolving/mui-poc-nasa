@@ -55,7 +55,7 @@ export class APOD extends Component {
         <main role='main'>
           {this.state.hasResult
           ? this.state.apodData && <Result stateChangeCallback={this.onStateChangeSubmit} apodData={this.state.apodData} />
-          : <Search stateChangeCallback={this.onStateChangeSubmit} defaultDate={this.state.defaultDate} />}
+          : <Search today={this.today} stateChangeCallback={this.onStateChangeSubmit} defaultDate={this.state.defaultDate} />}
         </main>
       </section>  
       );

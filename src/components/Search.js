@@ -1,20 +1,34 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
+import { Button, Input, InputLabel } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-export default function Search (props) {
+const styles = theme => ({
+    label: {
+        display: 'block'
+    }
+})
+
+export function Search (props) {
+    const {stateChangeCallback, defaultDate, today, classes} = props
     return (
-        <form onSubmit={props.stateChangeCallback}>
-            <TextField
+        <form onSubmit={stateChangeCallback}>
+            <InputLabel htmlFor='date' className={classes.label}>
+                Pick a date between June 16, 1995 and today.
+            </InputLabel>
+            <Input
                 id="date"
-                label="Pick a date between X and now"
                 type="date"
-                defaultValue={props.defaultDate}
-                InputLabelProps={{
-                shrink: true,
+                defaultValue={defaultDate}
+                inputProps={{
+                    min: '1995-06-16',
+                    max: today
                 }}
+                required
             />
             <Button type='submit'>Search</Button>
         </form>
     )
 }
+
+export default withStyles(styles)(Search)
