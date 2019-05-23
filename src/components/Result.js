@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, CardMedia } from '@material-ui/core';
+import { Typography, CardMedia, Button } from '@material-ui/core';
 
 export default function Result (props) {
     const {apodData: {copyright, date, explanation, url, title}} = props
@@ -13,7 +13,7 @@ export default function Result (props) {
             <Typography>
                 {explanation}
             </Typography>
-            <button onClick={props.stateChangeCallback}>Result</button>
+            <Button onClick={props.stateChangeCallback}>Result</Button>
         </section>
     )
 }
