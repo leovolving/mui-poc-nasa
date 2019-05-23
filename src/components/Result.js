@@ -5,7 +5,7 @@ export default function Result (props) {
     const {apodData: {copyright, date, explanation, url, title}} = props
 
     return (
-        <section role='region'>
+        <section>
             <Typography>
                 {title}
             </Typography>

@@ -22,15 +22,19 @@ return ({
 export class APOD extends Component {
   constructor(props) {
     super(props)
+    this.date = new Date()
+    this.today = `${this.date.getFullYear()}-${(`0${(this.date.getMonth() + 1)}`).slice(-2)}-${this.date.getDate()}`
     this.state = {
       hasResult: false,
-      apodData: null
+      apodData: null,
+      defaultDate: this.today
     }
 
     this.onStateChangeSubmit = this.onStateChangeSubmit.bind(this)
   }
 
   getPhoto () {
+    this.setState({defaultDate: document.getElementById('date').value})
     this.setState({
       apodData: {
         copyright: "Crni Vrh ObsU. Ljubljana",
@@ -58,7 +62,7 @@ export class APOD extends Component {
         <main role='main'>
           {this.state.hasResult
           ? <Result stateChangeCallback={this.onStateChangeSubmit} apodData={this.state.apodData} />
-          : <Search stateChangeCallback={this.onStateChangeSubmit} />}
+          : <Search stateChangeCallback={this.onStateChangeSubmit} defaultDate={this.state.defaultDate} />}
         </main>
       </section>  
       );
