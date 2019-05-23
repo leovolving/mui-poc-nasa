@@ -34,7 +34,9 @@ export class APOD extends Component {
   }
 
   getPhoto () {
-    this.setState({defaultDate: document.getElementById('date').value})
+    const date = document.getElementById('date').value
+    this.setState({defaultDate: date})
+    const url = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=7qaNeMXX7fRvXZpfZx7XxIf6paPuFwvrw4p4wIBf`
     this.setState({
       apodData: {
         copyright: "Crni Vrh ObsU. Ljubljana",
