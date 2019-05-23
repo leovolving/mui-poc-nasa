@@ -12,7 +12,12 @@ export const WithThemeProvider = (Component) => (props) => {
         <JssProvider jss={jss} generateClassName={createGenerateClassName()}>
             <MuiThemeProvider
                 theme={createMuiTheme({
-                    palette: {primary: blue}
+                    palette: {primary: blue},
+                    overrides: {
+                        MuiButtonBase: {
+                            root: {border: '1px solid'}
+                        }
+                    }
                 })}
             >
                 <Component {...props} />

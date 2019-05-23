@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     label: {
-        display: 'block'
+        display: 'block',
+        color: 'inherit'
     }
 })
 
