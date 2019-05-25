@@ -6,8 +6,11 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "npm run predeploy && gh-pages -d build"
   },
+  "homepage": "https://ljyockey.github.io/mui-poc-nasa",
   "author": "Leo Yockey",
   "license": "ISC",
   "devDependencies": {
@@ -27,6 +30,7 @@
     "@material-ui/icons": "^4.0.0",
     "@material-ui/styles": "^3.0.0-alpha.10",
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-jss": "^8.6.1"
