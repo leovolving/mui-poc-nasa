@@ -30,9 +30,15 @@ export class Result extends Component {
         }
     }
 
+    getMediaContent (mediaType, url, title) {
+        return mediaType === 'image'
+            ? <CardMedia src={url} image={url} alt={title} component='img' />
+            : <iframe src={url}></iframe>
+    }
+
     render() {
         let isExpanded = false
-        const { classes, stateChangeCallback, apodData: { copyright, date, explanation, url, title } } = this.props
+        const { classes, stateChangeCallback, apodData: { copyright, date, explanation, url, title, media_type } } = this.props
         const handleExpandClick = () => this.setState({isExpanded: !this.state.isExpanded})
 
         return (
@@ -41,7 +47,7 @@ export class Result extends Component {
                 <Typography className={classes.h2} variant='h2'>
                     {title}
                 </Typography>
-                <CardMedia src={url} image={url} alt={title} component='img' />
+                {this.getMediaContent(media_type, url, title)}
                 <CardActionArea onClick={handleExpandClick}>
                     <div className={classes.cardActionFlex}>
                         <Typography variant='body1'>
