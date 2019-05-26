@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, CardMedia, Button, withStyles, Collapse, IconButton } from '@material-ui/core';
+import { Typography, CardMedia, Button, withStyles, Collapse, IconButton, CardActionArea } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
@@ -12,9 +12,13 @@ const styles = theme => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
+        border: 'none'
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },
+    cardActionFlex: {
+        display: 'flex'
     }
 })
 
@@ -33,20 +37,20 @@ export class Result extends Component {
 
         return (
             <section>
+                <Button onClick={stateChangeCallback}>Back</Button>
                 <Typography className={classes.h2} variant='h2'>
                     {title}
                 </Typography>
                 <CardMedia src={url} image={url} alt={title} component='img' />
-                <Button onClick={stateChangeCallback}>Back</Button>
-                <IconButton
-                    className={[classes.expand, this.state.isExpanded ? classes.expandOpen : '']}
-                    onClick={handleExpandClick}
-                    aria-expanded={this.state.isExpanded}
-                    aria-label={this.state.isExpanded ? 'Show description' : 'Hide description'}
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
-                <Collapse in={this.state.isExpanded}>
+                <CardActionArea onClick={handleExpandClick}>
+                    <div className={classes.cardActionFlex}>
+                        <Typography variant='body1'>
+                            {this.state.isExpanded ? 'Hide description' : 'Show description'}
+                        </Typography>
+                        <ExpandMoreIcon className={[classes.expand, this.state.isExpanded ? classes.expandOpen : '']} />
+                    </div>    
+                </CardActionArea>
+                <Collapse in={this.state.isExpanded} aria-expanded={this.state.isExpanded}>
                     <Typography variant='body1'>
                         {explanation}
                     </Typography>

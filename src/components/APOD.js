@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Search from './Search';
 import Result from './Result';
 import Header from './Header';
+import { Card } from '@material-ui/core';
 
 const styles = theme => {
 return ({
@@ -17,7 +18,10 @@ return ({
         color: theme.palette.primary.main,
         padding: '0 30px',
     },
-    })
+    card: {
+      padding: '10px'
+    }
+  })
 };
 
 export class APOD extends Component {
@@ -49,13 +53,16 @@ export class APOD extends Component {
   }
 
   render () {
+    const {classes} = this.props
     return (
       <section>
         <Header />
         <main role='main'>
-          {this.state.hasResult
-          ? this.state.apodData && <Result stateChangeCallback={this.onStateChangeSubmit} apodData={this.state.apodData} />
-          : <Search today={this.today} stateChangeCallback={this.onStateChangeSubmit} defaultDate={this.state.defaultDate} />}
+          <Card className={classes.card}>
+            {this.state.hasResult
+            ? this.state.apodData && <Result stateChangeCallback={this.onStateChangeSubmit} apodData={this.state.apodData} />
+            : <Search today={this.today} stateChangeCallback={this.onStateChangeSubmit} defaultDate={this.state.defaultDate} />}
+          </Card>
         </main>
       </section>  
       );

@@ -15,7 +15,7 @@ export const WithThemeProvider = (Component) => (props) => {
                     palette: {primary: blue},
                     overrides: {
                         MuiButtonBase: {
-                            root: {border: '1px solid'}
+                            root: {textDecoration: 'underline'}
                         }
                     }
                 })}
